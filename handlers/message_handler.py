@@ -15,7 +15,7 @@ router: Router = Router()
 
 @router.message(CommandStart())
 async def start_command(message: Message):
-    await bot.send_message(chat_id=message.from_user.id, text="Здравствуйте!\nЗдесь вы можете создать пост и я опубликую его в канал!\nДля начала выберите кнопку ⬇️", reply_markup=kb_start)
+    await bot.send_message(chat_id=message.from_user.id, text="Здравствуйте!\nЗдесь вы можете создать пост и я опубликую его в канал!")
 
 
 # @router.message(F.photo[0].file_id)
@@ -42,6 +42,8 @@ async def collect_and_send_media_group(message: Message, photo_id: str, album_id
     new_album = [InputMediaPhoto(media=file_id) for file_id in mediagroups[album_id]]
     new_album.append(photo_last)
     await bot.send_media_group(chat_id=-1001821547478, media=new_album)
+    # await message.reply_to_message(chat_id=message.from_user.id, text="Пост добавлен!")
+    await message.reply(text="Пост добавлен!")
 
 
 
